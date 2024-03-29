@@ -36,12 +36,27 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <div class="top-nav-links">
+                <?= $this->Html->Link('Accueil', ['controller' => 'Users', 'actions' => 'index']) ?>
+            </div>
+
+            <?php if($this->request->getAttribute('identity') == null) : ?>
+
+            <?= $this->Html->Link('créer un compte', ['controller' => 'Users', 'action' => 'signup'], ['escape' =>false]) ?>
+
+            <?= $this->Html->Link('se connecter', ['controller' => 'Users', 'action' => 'login'], ['escape' =>false]) ?>
+
+            <?php else : ?>
+
+                
+                <?= $this->Html->Link('ajouter une couleur ', ['controller' => 'Listings', 'action' => 'new'], ['escape' =>false]) ?>
+                <?= $this->Html->Link('Les listes', ['controller' => 'Listings', 'action' => 'index'], ['escape' =>false]) ?>
+                <!-- faire les listes etc -->
+            
+            <?php endif; ?>
+
         </div>
-        <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
-        </div>
+       
     </nav>
     <main class="main">
         <div class="container">
